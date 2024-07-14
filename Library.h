@@ -19,6 +19,9 @@ public:
     void saveData() const;
     void loadData();
 
+    void showAllBooks() const;    // New method
+    void showAllPatrons() const;  // New method
+
 private:
     std::vector<Book> books;
     std::vector<Patron> patrons;
