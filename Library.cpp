@@ -1,31 +1,26 @@
 #include "Library.h"
 #include <iostream>
 #include <fstream>
+#include <iomanip> // For formatted output
 
 void Library::addBook(const Book& book) {
-    // Check if book with the same ID already exists
     for (const auto& existingBook : books) {
         if (existingBook.getId() == book.getId()) {
             std::cout << "A book with the same ID already exists. Please enter a different ID.\n";
             return;
         }
     }
-
-    // If no book with the same ID exists, add the book
     books.push_back(book);
     std::cout << "Book added successfully.\n";
 }
 
 void Library::addPatron(const Patron& patron) {
-    // Check if patron with the same ID already exists
     for (const auto& existingPatron : patrons) {
         if (existingPatron.getId() == patron.getId()) {
             std::cout << "A patron with the same ID already exists. Please enter a different ID.\n";
             return;
         }
     }
-
-    // If no patron with the same ID exists, add the patron
     patrons.push_back(patron);
     std::cout << "Patron added successfully.\n";
 }
@@ -72,7 +67,6 @@ void Library::checkOutBook(int bookId, int patronId, int quantity, double price)
     }
     std::cout << "Book not available or insufficient quantity.\n";
 }
-
 
 void Library::returnBook(int bookId, int patronId, int quantity) {
     for (auto& book : books) {
@@ -135,5 +129,21 @@ void Library::loadData() {
             patrons[i].load(patronFile);
         }
         patronFile.close();
+    }
+}
+
+void Library::showAllBooks() const {
+    std::cout << std::setw(10) << "Book ID" << std::setw(30) << "Title" << std::setw(30) << "Author" << std::setw(10) << "Quantity" << "\n";
+    std::cout << std::string(80, '-') << "\n";
+    for (const auto& book : books) {
+        std::cout << std::setw(10) << book.getId() << std::setw(30) << book.getTitle() << std::setw(30) << book.getAuthor() << std::setw(10) << book.getQuantity() << "\n";
+    }
+}
+
+void Library::showAllPatrons() const {
+    std::cout << std::setw(10) << "Patron ID" << std::setw(30) << "Name" << "\n";
+    std::cout << std::string(40, '-') << "\n";
+    for (const auto& patron : patrons) {
+        std::cout << std::setw(10) << patron.getId() << std::setw(30) << patron.getName() << "\n";
     }
 }
