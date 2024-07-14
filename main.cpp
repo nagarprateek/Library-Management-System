@@ -1,17 +1,19 @@
 #include "Library.h"
 #include <iostream>
 
-
 void displayMenu() {
     std::cout << "\n";
-    std::cout << "Library Management System\n";
+    std::cout << "Welcome to Library system\n";
     std::cout << "1. Add Book\n";
     std::cout << "2. Add Patron\n";
     std::cout << "3. Display Book Details\n";
     std::cout << "4. Display Patron Details\n";
     std::cout << "5. Check Out Book\n";
     std::cout << "6. Return Book\n";
-    std::cout << "7. Save and Exit\n";
+    std::cout << "7. Show All Books\n";    
+    std::cout << "8. Show All Patrons\n";  
+    std::cout << "9. Save and Exit\n";
+    std::cout << "\n";
     std::cout << "Enter your choice: ";
     std::cout << "\n";
 }
@@ -91,7 +93,15 @@ int main() {
                 library.returnBook(bookId, patronId, quantity);
                 break;
 
-            case 7:
+            case 7:  // Show All Books
+                library.showAllBooks();
+                break;
+
+            case 8:  // Show All Patrons
+                library.showAllPatrons();
+                break;
+
+            case 9:
                 library.saveData();
                 std::cout << "Data saved. Exiting...\n";
                 return 0;
